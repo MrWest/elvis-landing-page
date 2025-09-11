@@ -176,7 +176,7 @@ const translations = {
   }
 };
 
-const Preloader = React.forwardRef((props, ref) => {
+const Preloader = React.forwardRef((_, ref) => {
     const { preloaderRef, circleRef, nameRef, nameMaskRef } = ref;
     return (
         <div ref={preloaderRef} className="preloader">
@@ -187,6 +187,8 @@ const Preloader = React.forwardRef((props, ref) => {
         </div>
     );
 });
+
+Preloader.displayName = 'Preloader';
 
 
 export default function LandingMain() {
@@ -487,6 +489,7 @@ export default function LandingMain() {
   const BotonPremiumLegado = React.forwardRef(({ children, onClick, fwdRef }) => (
     <button ref={fwdRef} onClick={onClick} className="cta">{children}</button>
   ));
+  BotonPremiumLegado.displayName = 'BotonPremiumLegado';
   
   const BotonLegado = ({ href, children }) => (
     <a href={href} className="cta cta-legado">{children}</a>
