@@ -17,16 +17,17 @@ const translations = {
       "próxima década."
     ],
     hero_title2_lines: [
-      "¿Está construyendo",
-      "un sistema para",
-      "sobrevivir,o un legado",
-      "para <em>trascender?</em>"
+      "¿Está construyendo un",
+      "sistema para sobrevivir,",
+      "o un legado para",
+      "<em>trascender?</em>"
     ],
     hero_subtitle: "El potencial sin una arquitectura de impacto es solo una oportunidad desperdiciada.",
     hero_cta: "Descubra la Arquitectura del Legado",
     metodologia_title: "Nuestra Metodología: La Arquitectura de Legado",
     metodologia_p: "La confianza se construye sobre la claridad. Nuestra metodología es un proceso transparente y colaborativo, diseñado para que líderes de organizaciones, iniciativas de desarrollo y ventures tecnológicas transformen la incertidumbre en una hoja de ruta estratégica. Cada fase está orientada a construir una capacidad distintiva y un impacto sostenible en el tiempo.",
-    metodologia_cta: "Descargar Brief",
+    metodologia_book_title: "Dosier Estratégico: El Protocolo de Arquitectura de Legado",
+    metodologia_cta: "Descargar Dosier",
     fase1_title: "Fase 1 — Arquitectura de Impacto",
     fase1_p: "Un análisis profundo para definir el 'norte estratégico' y construir un blueprint claro y de bajo riesgo para su iniciativa.",
     fase2_title: "Fase 2 — Motor de Ejecución",
@@ -58,7 +59,7 @@ const translations = {
     form_message_label: "Mensaje",
     form_message_placeholder: "Describa su desafío u oportunidad...",
     form_cta: "Enviar Mensaje",
-    lang_popup_title: "Seleccionar idioma",
+    lang_popup_title: "Idioma",
   },
   en: {
     nav_inicio: "Home",
@@ -83,7 +84,8 @@ const translations = {
     hero_cta: "Discover the Legacy Architecture",
     metodologia_title: "Our Methodology: The Legacy Architecture",
     metodologia_p: "Trust is built on clarity. Our methodology is a transparent and collaborative process, designed for leaders of organizations, development initiatives, and tech ventures to transform uncertainty into a strategic roadmap. Each phase is geared towards building a distinctive capability and a sustainable, long-term impact.",
-    metodologia_cta: "Download Brief",
+    metodologia_book_title: "Strategic Dossier: The Legacy Architecture Protocol",
+    metodologia_cta: "Download Dossier",
     fase1_title: "Phase 1 — Impact Architecture",
     fase1_p: "A deep analysis to define the 'strategic north' and build a clear, low-risk blueprint for your initiative.",
     fase2_title: "Phase 2 — Execution Engine",
@@ -115,7 +117,7 @@ const translations = {
     form_message_label: "Message",
     form_message_placeholder: "Describe your challenge or opportunity...",
     form_cta: "Send Message",
-    lang_popup_title: "Select language",
+    lang_popup_title: "Language",
   },
   pt: {
     nav_inicio: "Início",
@@ -140,7 +142,8 @@ const translations = {
     hero_cta: "Descubra a Arquitetura do Legado",
     metodologia_title: "A Nossa Metodologia: A Arquitetura de Legado",
     metodologia_p: "A confiança constrói-se sobre a clareza. A nossa metodologia é um processo transparente e colaborativo, concebido para que líderes de organizações, iniciativas de desenvolvimento e ventures tecnológicas transformem a incerteza num roteiro estratégico. Cada fase está orientada para construir uma capacidade distinta e um impacto sustentável ao longo do tempo.",
-    metodologia_cta: "Descarregar Brief",
+    metodologia_book_title: "Dossiê Estratégico: O Protocolo de Arquitetura de Legado",
+    metodologia_cta: "Descargar Dossiê",
     fase1_title: "Fase 1 — Arquitetura de Impacto",
     fase1_p: "Uma análise profunda para definir o 'norte estratégico' e construir um blueprint claro e de baixo risco para a sua iniciativa.",
     fase2_title: "Fase 2 — Motor de Execução",
@@ -172,7 +175,7 @@ const translations = {
     form_message_label: "Mensagem",
     form_message_placeholder: "Describa seu desafio ou oportunidade...",
     form_cta: "Enviar Mensagem",
-    lang_popup_title: "Selecionar idioma",
+    lang_popup_title: "Idioma",
   }
 };
 
@@ -196,7 +199,8 @@ export default function LandingMain() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isLangPopupVisible, setIsLangPopupVisible] = useState(false);
-  const [language, setLanguage] = useState('en');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState('en'); // Default to English as per requirements
 
   const t = translations[language];
 
@@ -274,230 +278,183 @@ export default function LandingMain() {
         
         const finalX = separatorRect.left + (separatorRect.width / 2);
         const finalYCenter = separatorRect.top + (separatorRect.height / 2);
+
+        const isMobile = window.innerWidth <= 768;
         
-        const newCircleDiameter = textRect.height * 2;
-        const newCircleRadius = newCircleDiameter / 2;
+        // Mobile: Transform to horizontal line
+        if (isMobile) {
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    setIsLoading(false);
+                    gsap.set(contentRef.current, { autoAlpha: 1 });
+                }
+            });
 
-        gsap.set(circleRef.current, { 
-            top: finalYCenter, 
-            left: finalX, 
-            width: newCircleDiameter,
-            height: newCircleDiameter,
-            xPercent: -50, 
-            yPercent: -50,
-            margin: 0
-        });
-        gsap.set(nameMaskRef.current, {
-            top: finalYCenter,
-            left: finalX,
-            xPercent: -100,
-            yPercent: -50,
-            margin: 0,
-            x: -(newCircleRadius + 11)
-        });
-        
-        gsap.set(ctaRef.current, { y: 50, autoAlpha: 0 });
-        gsap.set(vSeparatorRef.current, { opacity: 0 });
+            tl.set(circleRef.current, {
+                width: '120px',
+                height: '120px',
+                left: '50%',
+                top: '50%',
+                xPercent: -50,
+                yPercent: -50,
+                scale: 1,
+                opacity: 1
+            })
+            .set(nameMaskRef.current, {
+                left: '50%',
+                top: '50%',
+                xPercent: -50,
+                yPercent: -50,
+                width: textRect.width + 'px',
+                height: textRect.height + 'px'
+            })
+            .to(circleRef.current, {
+                scale: 0,
+                duration: 0.8,
+                ease: "power2.inOut"
+            })
+            .to(nameRef.current, {
+                x: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.4")
+            .to(circleRef.current, {
+                width: '8px',
+                height: '8px',
+                scale: 1,
+                duration: 0.4,
+                ease: "power2.out"
+            })
+            .to(circleRef.current, {
+                width: '60px',
+                height: '2px',
+                duration: 0.6,
+                ease: "power2.inOut"
+            })
+            .to(preloaderRef.current, {
+                autoAlpha: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        } else {
+            // Desktop: Transform to vertical line
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    setIsLoading(false);
+                    gsap.set(contentRef.current, { autoAlpha: 1 });
+                }
+            });
 
-
-        const tl = gsap.timeline({
-            onComplete: () => {
-                setIsLoading(false);
-            }
-        });
-
-        const breathTl = gsap.timeline({
-            repeat: -1,
-            yoyo: true,
-            paused: true
-        }).to(circleRef.current, {
-            scale: 1.08,
-            duration: 1.5,
-            ease: 'power1.inOut'
-        });
-
-        tl
-          .to(circleRef.current, {
-            scale: 1,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out"
-          })
-          .add(() => breathTl.play())
-          .to(nameRef.current, { x: 0, duration: 1, ease: "power2.out" }, "<")
-          .to(nameRef.current, { x: "105%", duration: 0.6, ease: "power2.in" }, "+=0.5")
-          .addLabel("toPoint")
-          .add(() => breathTl.kill(), "toPoint")
-          .to(circleRef.current, {
-            width: 1,
-            height: 1,
-            borderRadius: "50%",
-            duration: 0.5,
-            ease: "power2.inOut"
-          }, "toPoint")
-          .to(circleRef.current, {
-            height: separatorRect.height,
-            width: 1,
-            borderRadius: 0,
-            duration: 1,
-            ease: "power3.inOut"
-          })
-          .to(circleRef.current, {
-            backgroundColor: "var(--bronze-300)",
-            duration: 0.6,
-            ease: "power1.inOut"
-          })
-          .to(preloaderRef.current, {
-            backgroundColor: "rgba(255,255,255,0)",
-            duration: 0.8,
-            ease: "power2.inOut"
-          })
-          .to(contentRef.current, { autoAlpha: 1, duration: 0.6, ease: "power2.out" }, "<")
-          .set(vSeparatorRef.current, { opacity: 1 }, "<")
-          .to(preloaderRef.current, { autoAlpha: 0, duration: 0.6 }, "<")
-          
-          .from(title1Ref.current.querySelectorAll(".hero-line"), {
-            x: "100%",
-            duration: 1,
-            ease: "expo.out",
-            stagger: 0.15
-          }, "+=0.2")
-
-          .from(title2Ref.current.querySelectorAll(".hero-line"), {
-            x: "-100%",
-            duration: 1,
-            ease: "expo.out",
-            stagger: 0.15
-          }, "<")
-
-          .from([kickerRef.current, leadRef.current], { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '-=0.8')
-          .addLabel('finalElements', '+=0.2')
-          .from(headerRef.current, { y: '-100%', duration: 1, ease: 'power3.out', clearProps: "transform" }, 'finalElements')
-          .from(navLinks, { y: -20, opacity: 0, stagger: 0.1, duration: 0.6, ease: 'power2.out' }, '-=0.6')
-          .to(ctaRef.current, {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1.2,
-            ease: "back.out(1.7)"
-          }, 'finalElements+=0.3');
+            tl.set(circleRef.current, {
+                width: '120px',
+                height: '120px',
+                left: '50%',
+                top: '50%',
+                xPercent: -50,
+                yPercent: -50,
+                scale: 1,
+                opacity: 1
+            })
+            .set(nameMaskRef.current, {
+                left: '50%',
+                top: '50%',
+                xPercent: -50,
+                yPercent: -50,
+                width: textRect.width + 'px',
+                height: textRect.height + 'px'
+            })
+            .to(circleRef.current, {
+                scale: 0,
+                duration: 0.8,
+                ease: "power2.inOut"
+            })
+            .to(nameRef.current, {
+                x: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.4")
+            .to(circleRef.current, {
+                width: '8px',
+                height: '8px',
+                scale: 1,
+                duration: 0.4,
+                ease: "power2.out"
+            })
+            .to(circleRef.current, {
+                left: finalX + 'px',
+                top: finalYCenter + 'px',
+                xPercent: -50,
+                yPercent: -50,
+                duration: 1.2,
+                ease: "power2.inOut"
+            })
+            .to(circleRef.current, {
+                width: '1px',
+                height: separatorRect.height + 'px',
+                duration: 0.6,
+                ease: "power2.inOut"
+            })
+            .to(preloaderRef.current, {
+                autoAlpha: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        }
     };
-    
+
     runAnimation();
+  }, [isScriptLoaded]);
 
-    return () => {
-        gsap.killTweensOf("*");
+  // Scroll animations
+  useEffect(() => {
+    if (!isScriptLoaded || !window.gsap || isLoading) return;
+    
+    const gsap = window.gsap;
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
     };
 
-  }, [isScriptLoaded, language]);
-  
-  // Other page interactions (unchanged)
-  useEffect(() => {
-    if(isLoading) return;
-    
-    document.body.style.overflowY = 'auto';
-
-    const animatedSectionObserver = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate');
-          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.25 });
-    document.querySelectorAll('.animated-section').forEach(section => {
-      animatedSectionObserver.observe(section);
-    });
-    
-    const speedEls = Array.from(document.querySelectorAll('.parallax'));
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function onScroll(){
-      if(reduce) return;
-      const y = window.pageYOffset;
-      speedEls.forEach(el=>{
-        const speed = parseFloat(el.dataset.speed||0);
-        const rect = el.getBoundingClientRect();
-        if(rect.top < window.innerHeight*1.2 && rect.bottom > -window.innerHeight*.2){
-          el.style.transform = `translate3d(0, ${y*speed}px, 0)`;
-        }
-      });
+    }, observerOptions);
+
+    const animatedSections = document.querySelectorAll('.animated-section');
+    animatedSections.forEach(section => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [isScriptLoaded, isLoading]);
+
+  // Language change handler
+  const handleLanguageChange = (newLang) => {
+    setLanguage(newLang);
+    setIsLangPopupVisible(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Mobile menu toggle
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Smooth scroll function
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    setIsMobileMenuOpen(false);
+  };
 
-    const interactiveTexts = document.querySelectorAll('.interactive-text');
-    const parallaxMouseEls = document.querySelectorAll('.mouse-parallax');
-
-    const onMouseMove = (e) => {
-        if (reduce) return;
-        const { clientX, clientY } = e;
-        interactiveTexts.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const mouseX = clientX - rect.left;
-            const mouseY = clientY - rect.top;
-            el.style.setProperty('--mouse-x', `${mouseX}px`);
-            el.style.setProperty('--mouse-y', `${mouseY}px`);
-        });
-        const x = (clientX / window.innerWidth - 0.5) * 2;
-        const y = (clientY / window.innerHeight - 0.5) * 2;
-        parallaxMouseEls.forEach(el => {
-            const speed = parseFloat(el.dataset.speedMouse || 0);
-            const transX = -x * speed * 50;
-            const transY = -y * speed * 50;
-            el.style.transform = `translate3d(${transX}px, ${transY}px, 0)`;
-        });
-    };
-    window.addEventListener('mousemove', onMouseMove);
-
-    const cursor = document.querySelector('.cursor');
-    let rafCur;
-    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && cursor){
-      let cx=0, cy=0, tx=0, ty=0;
-      function curTick(){ tx += (cx - tx) * 0.2; ty += (cy - ty) * 0.2; cursor.style.transform = `translate(${tx}px, ${ty}px) translate(-50%,-50%)`; rafCur = requestAnimationFrame(curTick); }
-      window.addEventListener('mousemove', e=>{ cx=e.clientX; cy=e.clientY; });
-      document.addEventListener('mouseover', e=>{ if(e.target.closest('a,.cta,button')) cursor.classList.add('-link'); else cursor.classList.remove('-link'); });
-      curTick();
-    }
-
-    let lastY = window.scrollY;
-    function headerScroll(){ const y = window.scrollY; const header = headerRef.current; if(header) { header.style.transform = (y>lastY && y>120) ? 'translateY(-100%)' : 'translateY(0)'; } lastY = y; }
-    window.addEventListener('scroll', headerScroll, { passive:true });
-
-    const sectionIds = ['#inicio','#metodologia','#evidencia','#el-arquitecto'];
-    const sections = sectionIds.map(id => document.querySelector(id)).filter(Boolean);
-    const links = Array.from(document.querySelectorAll('nav a'));
-    const dots = Array.from(document.querySelectorAll('.dot'));
-    const spy = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ 
-        if(e.isIntersecting){ 
-          const id = '#'+e.target.id; 
-          links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id)); 
-          dots.forEach(d=>d.classList.toggle('active', d.dataset.for===id)); 
-        } 
-      });
-    },{ threshold: 0.4 });
-    sections.forEach(s=>spy.observe(s));
-    
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('scroll', headerScroll);
-      window.removeEventListener('mousemove', onMouseMove);
-      if (rafCur) cancelAnimationFrame(rafCur);
-    };
-  }, [isLoading, language]);
-  
-  // --- COMPONENTS ---
-  const BotonPremiumLegado = React.forwardRef(({ children, onClick, fwdRef }) => (
-    <button ref={fwdRef} onClick={onClick} className="cta">{children}</button>
-  ));
-  BotonPremiumLegado.displayName = 'BotonPremiumLegado';
-  
-  const BotonLegado = ({ href, children }) => (
-    <a href={href} className="cta cta-legado">{children}</a>
-  );
-
+  // LinkedIn icon component
   const LinkedInIcon = () => (
-    <a href="https://www.linkedin.com/in/elvis-pozo" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn Profile">
-       <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="none">
+    <a href="https://linkedin.com/in/elvispozo" target="_blank" rel="noopener noreferrer" className="linkedin-link">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="0.5" />
         <g fill="currentColor" transform="scale(0.375) translate(20, 20.5)">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -522,7 +479,7 @@ export default function LandingMain() {
           <h2>{t.popup_title}</h2>
           <p className="muted">{t.popup_subtitle}</p>
           <form 
-            action="https://formspree.io/f/your_form_id" // Placeholder
+            action="https://formspree.io/f/elvispozo@eurekagc.com"
             method="POST" 
             className="contact-form"
           >
@@ -558,9 +515,24 @@ export default function LandingMain() {
           </button>
           <h2>{t.lang_popup_title}</h2>
           <div className="lang-options">
-            <button onClick={() => onSelect('es')}>Español</button>
-            <button onClick={() => onSelect('en')}>English</button>
-            <button onClick={() => onSelect('pt')}>Português</button>
+            <button 
+              onClick={() => onSelect('en')}
+              className={language === 'en' ? 'active' : ''}
+            >
+              English
+            </button>
+            <button 
+              onClick={() => onSelect('es')}
+              className={language === 'es' ? 'active' : ''}
+            >
+              Español
+            </button>
+            <button 
+              onClick={() => onSelect('pt')}
+              className={language === 'pt' ? 'active' : ''}
+            >
+              Português
+            </button>
           </div>
         </div>
       </div>
@@ -592,9 +564,118 @@ export default function LandingMain() {
         .section{position:relative} 
         .wrap{max-width:var(--maxw);margin:0 auto;padding-left: clamp(2rem, 5vw, 4rem); padding-right: clamp(2rem, 5vw, 4rem); padding-top: 8vh; padding-bottom: 8vh;}
         #metodologia .wrap, #evidencia .wrap, #el-arquitecto .wrap { padding-top: 14vh; padding-bottom: 14vh; }
-        .site-header {position: fixed; top:0; left:0; right:0; background: rgba(15,15,15,0.72); backdrop-filter: blur(8px); z-index: 9999; border-bottom: 1px solid rgba(255,255,255,.06); transform: translateY(0);} .nav-wrap {max-width: var(--maxw); margin: 0 auto; padding: .8rem clamp(2rem, 5vw, 4rem); display: flex; justify-content: space-between; align-items: center;} .logo a {font-family: Lora, Georgia, serif; font-size: 1.25rem; font-weight: 300; color: #f4f1ec; letter-spacing:.01em; text-decoration: none; transition: color .25s var(--bezier);} .logo a:hover { color: var(--bronze-300); } 
+        
+        /* Header Styles */
+        .site-header {position: fixed; top:0; left:0; right:0; background: rgba(15,15,15,0.72); backdrop-filter: blur(8px); z-index: 9999; border-bottom: 1px solid rgba(255,255,255,.06); transform: translateY(0);} 
+        .nav-wrap {max-width: var(--maxw); margin: 0 auto; padding: .8rem clamp(2rem, 5vw, 4rem); display: flex; justify-content: space-between; align-items: center;} 
+        .logo a {font-family: Lora, Georgia, serif; font-size: 1.25rem; font-weight: 300; color: #f4f1ec; letter-spacing:.01em; text-decoration: none; transition: color .25s var(--bezier);} 
+        .logo a:hover { color: var(--bronze-300); } 
+        
+        /* Desktop Navigation */
         nav { display: flex; align-items: center; font-family: Inter, system-ui, sans-serif; }
-        nav a, .nav-button { all: unset; box-sizing: border-box; cursor: pointer; position:relative; margin-left: 1.2rem; color: #f4f1ec; text-decoration: none; font-weight: 500; font-size: .96rem; transition: color .25s var(--bezier); } nav a:after, .nav-button:after {content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background: linear-gradient(90deg,transparent, var(--bronze-300), transparent); transform:scaleX(0); transform-origin:center; transition:transform .35s var(--bezier)} nav a:hover, .nav-button:hover { color: var(--bronze-300); } nav a:hover:after, .nav-button:hover:after{ transform:scaleX(1) } nav a.active, .nav-button.active{ color: var(--bronze-300) }
+        nav a, .nav-button { all: unset; box-sizing: border-box; cursor: pointer; position:relative; margin-left: 1.2rem; color: #f4f1ec; text-decoration: none; font-weight: 500; font-size: .96rem; transition: color .25s var(--bezier); } 
+        nav a:after, .nav-button:after {content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background: linear-gradient(90deg,transparent, var(--bronze-300), transparent); transform:scaleX(0); transform-origin:center; transition:transform .35s var(--bezier)} 
+        nav a:hover, .nav-button:hover { color: var(--bronze-300); } 
+        nav a:hover:after, .nav-button:hover:after{ transform:scaleX(1) } 
+        nav a.active, .nav-button.active{ color: var(--bronze-300) }
+        
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          color: #f4f1ec;
+          cursor: pointer;
+          padding: 0.5rem;
+        }
+        
+        .mobile-menu {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: rgba(15,15,15,0.95);
+          backdrop-filter: blur(12px);
+          transition: right 0.3s var(--bezier);
+          z-index: 10000;
+          padding: 2rem;
+          border-left: 1px solid rgba(255,255,255,.06);
+        }
+        
+        .mobile-menu.open {
+          right: 0;
+        }
+        
+        .mobile-menu-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: none;
+          border: none;
+          color: #f4f1ec;
+          cursor: pointer;
+          padding: 0.5rem;
+        }
+        
+        .mobile-menu-content {
+          margin-top: 3rem;
+        }
+        
+        .mobile-menu-item {
+          display: block;
+          color: #f4f1ec;
+          text-decoration: none;
+          padding: 1rem 0;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+          font-weight: 500;
+          transition: color .25s var(--bezier);
+        }
+        
+        .mobile-menu-item:hover {
+          color: var(--bronze-300);
+        }
+        
+        .mobile-lang-section {
+          margin-top: 2rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba(255,255,255,.06);
+        }
+        
+        .mobile-lang-title {
+          color: #f4f1ec;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+        }
+        
+        .mobile-lang-option {
+          display: block;
+          color: #f4f1ec;
+          text-decoration: none;
+          padding: 0.75rem 0;
+          font-weight: 400;
+          transition: color .25s var(--bezier);
+          opacity: 0.7;
+        }
+        
+        .mobile-lang-option.active {
+          color: var(--bronze-300);
+          opacity: 1;
+          font-weight: 500;
+        }
+        
+        .mobile-lang-option:hover {
+          color: var(--bronze-300);
+          opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+          nav { display: none; }
+          .mobile-menu-toggle { display: block; }
+        }
         
         .hero{min-height:92vh;background: radial-gradient(120% 90% at 70% 40%, #171717 0%, #0f0f0f 60%, #0a0a0a 100%); color:#f6f5f3; overflow:hidden; padding-top:82px; border-bottom:1px solid rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center;} 
         .hero .wrap{display:grid;grid-template-columns:1fr;text-align:center;gap:clamp(0.6rem, 1.5vw, 1.8rem);align-items:center;} 
@@ -610,8 +691,8 @@ export default function LandingMain() {
         .hero-line {
           display: block;
           line-height: var(--hero-line-height);
-          height: 1.2em;
-          overflow: hidden;
+          min-height: 1.2em;
+          overflow: visible;
         }
 
         .headline-right-wrapper em, .hero-line em {
@@ -636,7 +717,7 @@ export default function LandingMain() {
             opacity: 0;
         } 
 
-        .hero-title-wrapper { overflow: hidden; }
+        .hero-title-wrapper { overflow: visible; }
 
         .cta{ display:inline-block; margin-top:1.25rem; padding:.95rem 1.5rem; border-radius:.9rem; font-weight:600; text-decoration:none; transition: transform .35s var(--bezier), box-shadow .35s var(--bezier), filter .35s var(--bezier); border:none; cursor: pointer; } 
         .cta-wrapper { display: inline-block; }
@@ -673,283 +754,374 @@ export default function LandingMain() {
         .evidence-thirds-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1.5rem; min-height: 85vh; }
         .evidence-text-block { grid-column: 1 / 2; grid-row: 1 / 3; padding: 2rem; text-align: right; display: flex; flex-direction: column; justify-content: center; }
         .evidence-separator { grid-column: 2 / 3; grid-row: 2 / 3; background: radial-gradient(120% 90% at 70% 40%, #1c1c1c 0%, #0f0f0f 60%, #0a0a0a 100%); box-shadow: inset 0 0 140px rgba(255,255,255,.04),0 30px 80px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.06); border-radius: 1.25rem; }
-        .card-wrapper { position: relative; border-radius: 1.25rem; padding: 2px; background: transparent; height: 100%; box-shadow: none; transition: transform .35s var(--bezier), box-shadow .35s var(--bezier), background .35s var(--bezier); }
-        .card-wrapper:hover { background: linear-gradient(160deg, var(--bronze-300), var(--bronze-700)); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(30,25,20,.18); }
-        .card-inner { background-color: white; height: 100%; border-radius: calc(1.25rem - 2px); padding: 6rem 1.5rem; display: flex; flex-direction: column; justify-content: center; position: relative; }
-        .card-dot { position: absolute; bottom: 1.5rem; right: 1.5rem; width: 24px; height: 24px; background-color: var(--carbon); border-radius: 50%; }
-        .case-card-inner { background-color: white; height: 100%; border-radius: calc(1.25rem - 2px); padding: 2rem 3rem; display: flex; flex-direction: column; justify-content: center; }
-        .case-icon { flex-shrink: 0; margin-bottom: 1rem; height: 64px; width: 64px; } .case-icon img { height: 100%; width: 100%; object-fit: contain; }
-        .card-conexa { grid-column: 2 / 4; grid-row: 1 / 2; } .card-conexa .case-card-inner { background-color: var(--evidence-card-conexa-bg); } .card-conexa h3, .card-conexa p { color: var(--evidence-text-light) !important; }
-        .card-ceic { grid-column: 3 / 4; grid-row: 2 / 4; } .card-ceic .case-card-inner { background-color: var(--evidence-card-ceic-bg); } .card-ceic h3 { color: var(--evidence-text-dark); } .card-ceic p { color: var(--evidence-text-dark) !important; } .card-ceic .case-content { text-align: left; }
-        .card-cardiozono { grid-column: 1 / 3; grid-row: 3 / 4; text-align: right; } .card-cardiozono .case-card-inner { background-color: var(--evidence-card-cardiozono-bg); } .card-cardiozono .case-icon { margin-left: auto; }
-        .book-image-box { background: var(--carbon-900); padding: 4rem 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem; }
-        .book-cover { position: relative; text-align: center; width: 100%; max-width: 280px; aspect-ratio: 2 / 3; margin: 0 auto; border-radius: 8px; overflow: hidden; background-color: #000; }
-        .book-cover img { mix-blend-mode: normal; opacity: 1; object-fit: contain; display: block; }
-        .book-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; color: transparent; font-size: clamp(1.2rem, 2vw, 1.7rem); background: linear-gradient(170deg, #D4AF8B, var(--bronze-700)); -webkit-background-clip: text; background-clip: text; text-shadow: 0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.1); padding: 0.5rem 1rem; margin: 0; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
-        .footer-wrap { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding-top: 0; padding-bottom: 0; }
-        .social-icon { color: var(--muted); transition: color .35s var(--bezier), transform .35s var(--bezier); display: inline-block; } .social-icon:hover { color: var(--bronze-300); transform: translateY(-2px); }
-        .footer-wrap p a { color: var(--muted); text-decoration: underline; transition: color .25s var(--bezier); } .footer-wrap p a:hover { color: var(--bronze-300); text-decoration: none; }
-        .popup-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 15, 15, 0.72); backdrop-filter: blur(8px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; animation: fadeIn 0.3s forwards; }
-        .popup-content { background: #1a1a1a; padding: 2.5rem; border-radius: 22px; border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 500px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transform: scale(0.95); animation: scaleIn 0.3s forwards; }
-        .popup-content h2 { color: var(--offwhite); } .popup-content p { color: var(--muted); }
-        .close-button { position: absolute; top: 0.8rem; right: 1rem; background: none; border: none; padding: 0.5rem; color: var(--muted); cursor: pointer; transition: color 0.25s; } .close-button:hover { color: var(--offwhite); } .close-button svg { width: 24px; height: 24px; }
-        .contact-form { display: flex; flex-direction: column; gap: 1.25rem; } .contact-form .form-group { display: flex; flex-direction: column; }
-        .contact-form label { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-        .contact-form input, .contact-form textarea { background-color: var(--offwhite); border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 0.8rem 1rem; color: var(--carbon); font-family: inherit; font-size: 1rem; transition: border-color 0.25s, box-shadow 0.25s; box-shadow: inset 0 2px 6px rgba(0,0,0,0.3); }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #9ca3af; } .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--bronze-300); box-shadow: 0 0 0 3px rgba(184, 140, 101, 0.2), inset 0 2px 6px rgba(0,0,0,0.3); }
-        .contact-form textarea { resize: vertical; min-height: 100px; }
-        .lang-popup { width: auto; max-width: 300px; }
-        .lang-options { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-        .lang-options button { all: unset; cursor: pointer; color: var(--offwhite); font-size: 1.2rem; text-align: center; padding: 0.75rem; border-radius: 8px; transition: background-color 0.25s, color 0.25s; } .lang-options button:hover { background-color: var(--bronze-700); color: var(--offwhite); }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } @keyframes scaleIn { from { transform: scale(0.95); } to { transform: scale(1); } }
-        @media (max-width: 980px){ 
-          .hero .wrap{grid-template-columns:1fr} 
-          .protocol-grid,.arch-grid,.evidence-grid{grid-template-columns:1fr} 
-          .phase-cards{grid-template-columns:1fr} nav a {margin-left:.75rem;font-size:.88rem;} 
-          .rail{display:none} 
-          .evidence-cards { margin-top: 2rem; } 
-          .hero-headline { flex-direction: column; gap: 1.5rem; }
-          .headline-left { align-items: center; text-align: center; }
-          .v-separator { width: 100px; height: 1px; min-height: 0; align-self: center; }
-          .hero-headline > div, .hero-headline > .headline-right-wrapper, .hero-headline > .headline-right-wrapper > .hero-title-wrapper > span { max-width: 100%; text-align: center; }
-          .headline-left .hero-title-wrapper span { text-align: center; }
-          .evidence-thirds-grid { grid-template-columns: 1fr; grid-template-rows: auto; min-height: auto; }
-          .evidence-text-block, .evidence-separator, .card-wrapper { grid-column: auto; grid-row: auto; text-align: left !important; }
-          .case-card-inner { padding: 2rem !important; flex-direction: column !important; align-items: flex-start !important; }
-          .case-icon { margin: 0 0 1rem 0 !important; }
-          /* On small screens allow the fixed lines to wrap if necessary */
-          .hero-line { white-space: normal; }
-        }
-        @media (prefers-reduced-motion: reduce){ .image-box{transition:none} .cursor{display:none} }
-      `}</style>
-      
-      {isLoading && <Preloader ref={{ preloaderRef, circleRef, nameRef, nameMaskRef }} />}
+        .evidence-card { padding: 2rem; border-radius: 1.25rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; }
+        .evidence-card-conexa { grid-column: 3 / 4; grid-row: 1 / 2; background: var(--evidence-card-conexa-bg); color: var(--evidence-text-light); }
+        .evidence-card-ceic { grid-column: 3 / 4; grid-row: 2 / 3; background: var(--evidence-card-ceic-bg); color: var(--evidence-text-dark); }
+        .evidence-card-cardiozono { grid-column: 3 / 4; grid-row: 3 / 4; background: var(--evidence-card-cardiozono-bg); color: var(--evidence-text-dark); }
+        .evidence-card-logo { width: 80px; height: 80px; margin-bottom: 1.5rem; border-radius: 12px; }
+        .evidence-card h3 { margin-bottom: 1rem; font-size: clamp(1rem, 1.4vw, 1.2rem); }
+        .evidence-card p { font-size: clamp(0.85rem, 1vw, 0.95rem); line-height: 1.5; margin: 0; }
 
-      <div ref={contentRef} className="app-root" style={{visibility: isLoading ? 'hidden' : 'visible'}}>
-        <header ref={headerRef} className="site-header" aria-label="Main Navigation">
+        /* Mobile responsive adjustments for methodology section */
+        @media (max-width: 768px) {
+          .protocol-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+          
+          .protocol-grid .copy {
+            order: 1;
+          }
+          
+          .protocol-grid .image-box {
+            order: 4;
+            min-height: 300px;
+          }
+          
+          .phase-cards {
+            order: 3;
+            grid-template-columns: 1fr;
+            margin-top: 2rem;
+          }
+          
+          .evidence-thirds-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            gap: 1rem;
+            min-height: auto;
+          }
+          
+          .evidence-text-block {
+            grid-column: 1;
+            grid-row: auto;
+            text-align: center;
+            padding: 1rem;
+          }
+          
+          .evidence-separator {
+            grid-column: 1;
+            grid-row: auto;
+            height: 2px;
+            width: 60px;
+            margin: 1rem auto;
+            background: var(--bronze-300);
+          }
+          
+          .evidence-card {
+            grid-column: 1;
+            grid-row: auto;
+            padding: 1.5rem;
+          }
+        }
+
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10003; }
+        .popup-content { background: #fff; border-radius: 12px; padding: 2rem; max-width: 500px; width: 90%; position: relative; }
+        .close-button { position: absolute; top: 1rem; right: 1rem; background: none; border: none; cursor: pointer; color: #666; }
+        .contact-form { margin-top: 1rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--bronze-300); }
+        
+        .lang-popup { max-width: 300px; }
+        .lang-options { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .lang-options button { padding: 0.75rem 1rem; border: 1px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .lang-options button:hover { background: #f5f5f5; }
+        .lang-options button.active { background: var(--bronze-300); color: #fff; border-color: var(--bronze-300); }
+
+        /* Book cover styling - remove black background */
+        .book-cover-container {
+          background: transparent !important;
+          border-radius: 1.25rem;
+          overflow: hidden;
+          position: relative;
+        }
+        
+        .book-cover-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          text-align: center;
+          font-family: Lora, Georgia, serif;
+          font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+          line-height: 1.4;
+          font-weight: 600;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+          max-width: 80%;
+        }
+
+        @media (max-width: 768px) {
+          .book-cover-text {
+            font-size: clamp(0.8rem, 3vw, 1rem);
+          }
+        }
+      `}</style>
+
+      {isLoading && (
+        <Preloader ref={{ preloaderRef, circleRef, nameRef, nameMaskRef }} />
+      )}
+
+      <div ref={contentRef} style={{ visibility: 'hidden', opacity: 0 }}>
+        {/* Header */}
+        <header ref={headerRef} className="site-header">
           <div className="nav-wrap">
             <div className="logo">
-              <a href="#el-arquitecto">Elvis Pozo</a>
-            </div>
-            <nav>
-              <a href="#inicio">{t.nav_inicio}</a>
-              <a href="#metodologia">{t.nav_metodologia}</a>
-              <a href="#evidencia">{t.nav_evidencia}</a>
-              <a href="#el-arquitecto">{t.nav_arquitecto}</a>
-              <button onClick={() => setIsPopupVisible(true)} className="nav-button">{t.nav_contacto}</button>
-               <button onClick={() => setIsLangPopupVisible(true)} className="nav-button" aria-label="Seleccionar idioma">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-              </button>
-            </nav>
-          </div>
-        </header>
-
-        <div className="rail" aria-hidden="true">
-          <div className="dot" data-for="#inicio"></div>
-          <div className="dot" data-for="#metodologia"></div>
-          <div className="dot" data-for="#evidencia"></div>
-          <div className="dot" data-for="#el-arquitecto"></div>
-        </div>
-
-        <header className="hero section" id="inicio">
-          <div className="wrap">
-            <div className="copy">
-              <div className="mouse-parallax" data-speed-mouse="0.03">
-                <h1>
-                  <div className="hero-headline">
-                    <div className="headline-left">
-                      <div ref={kickerRef} className="kicker">{t.hero_kicker}</div>
-                      <div ref={title1Ref} className="hero-title-wrapper">
-                        {Array.isArray(t.hero_title1_lines) ? t.hero_title1_lines.map((line, i) => (
-                          <span key={i} className="hero-line interactive-text" dangerouslySetInnerHTML={{ __html: line }} />
-                        )) : <span className="hero-line interactive-text">{t.hero_title1_lines}</span>}
-                      </div>
-                    </div>
-                    <div ref={vSeparatorRef} className="v-separator" aria-hidden="true"></div>
-                    <div className="headline-right-wrapper">
-                       <div ref={title2Ref} className="hero-title-wrapper">
-                        {Array.isArray(t.hero_title2_lines) ? t.hero_title2_lines.map((line, i) => (
-                          <span key={i} className="hero-line interactive-text" dangerouslySetInnerHTML={{ __html: line }} />
-                        )) : <span className="hero-line interactive-text">{t.hero_title2_lines}</span>}
-                       </div>
-                    </div>
-                  </div>
-                </h1>
-                <p ref={leadRef} className="lead interactive-text">{t.hero_subtitle}</p>
-              </div>
-              <div className="cta-wrapper">
-                <BotonPremiumLegado fwdRef={ctaRef} onClick={() => setIsPopupVisible(true)}>{t.hero_cta}</BotonPremiumLegado>
-              </div>
+              <a href="#inicio">Elvis Pozo</a>
             </div>
             
+            {/* Desktop Navigation */}
+            <nav>
+              <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>{t.nav_inicio}</a>
+              <a href="#metodologia" onClick={(e) => { e.preventDefault(); scrollToSection('metodologia'); }}>{t.nav_metodologia}</a>
+              <a href="#evidencia" onClick={(e) => { e.preventDefault(); scrollToSection('evidencia'); }}>{t.nav_evidencia}</a>
+              <a href="#el-arquitecto" onClick={(e) => { e.preventDefault(); scrollToSection('el-arquitecto'); }}>{t.nav_arquitecto}</a>
+              <a href="#contacto" onClick={(e) => { e.preventDefault(); setIsPopupVisible(true); }}>{t.nav_contacto}</a>
+              <button 
+                className="nav-button" 
+                onClick={() => setIsLangPopupVisible(true)}
+              >
+                {t.lang_popup_title}
+              </button>
+            </nav>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="mobile-menu-toggle"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle mobile menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
           </div>
         </header>
-        
-        <div className="light">
-          <section className="section" id="metodologia" aria-labelledby="ttl-metodologia">
-            <div className="wrap protocol">
-                <div className="protocol-grid animated-section">
-                    <div className="image-box book-image-box anim-item-3">
-                      <div className="book-cover">
-                        <img src={imageUrls.portadaLibro} alt={t.metodologia_cta.replace("Descargar ", "")} />
-                        <h3 className="book-title">
-                          <span>{t.metodologia_cta.replace("Descargar ", "")}</span>
-                        </h3>
-                      </div>
-                      <BotonLegado href="#">{t.metodologia_cta}</BotonLegado>
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-                        <div className="protocol-text-block">
-                            <div className="mouse-parallax" data-speed-mouse="0.03">
-                                <div className="anim-item-1">
-                                    <h2 id="ttl-metodologia" className="interactive-text">{t.metodologia_title}</h2>
-                                </div>
-                                <div className="anim-item-2">
-                                    <p className="muted interactive-text">{t.metodologia_p}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="phase-cards">
-                            <div className="card-wrapper anim-item-4">
-                                <div className="card-inner">
-                                    <h3>{t.fase1_title}</h3>
-                                    <p className="muted">{t.fase1_p}</p>
-                                    <div className="card-dot"></div>
-                                </div>
-                            </div>
-                            <div className="card-wrapper anim-item-5">
-                                <div className="card-inner">
-                                    <h3>{t.fase2_title}</h3>
-                                    <p className="muted">{t.fase2_p}</p>
-                                    <div className="card-dot" style={{ backgroundColor: 'var(--evidence-card-conexa-bg)' }}></div>
-                                </div>
-                            </div>
-                            <div className="card-wrapper anim-item-6">
-                                <div className="card-inner">
-                                    <h3>{t.fase3_title}</h3>
-                                    <p className="muted">{t.fase3_p}</p>
-                                    <div className="card-dot" style={{ backgroundColor: 'var(--evidence-card-ceic-bg)' }}></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <button 
+            className="mobile-menu-close"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close mobile menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+          
+          <div className="mobile-menu-content">
+            <a href="#inicio" className="mobile-menu-item" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>{t.nav_inicio}</a>
+            <a href="#metodologia" className="mobile-menu-item" onClick={(e) => { e.preventDefault(); scrollToSection('metodologia'); }}>{t.nav_metodologia}</a>
+            <a href="#evidencia" className="mobile-menu-item" onClick={(e) => { e.preventDefault(); scrollToSection('evidencia'); }}>{t.nav_evidencia}</a>
+            <a href="#el-arquitecto" className="mobile-menu-item" onClick={(e) => { e.preventDefault(); scrollToSection('el-arquitecto'); }}>{t.nav_arquitecto}</a>
+            <a href="#contacto" className="mobile-menu-item" onClick={(e) => { e.preventDefault(); setIsPopupVisible(true); }}>{t.nav_contacto}</a>
+            
+            <div className="mobile-lang-section">
+              <div className="mobile-lang-title">{t.lang_popup_title}</div>
+              <a 
+                href="#" 
+                className={`mobile-lang-option ${language === 'en' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLanguageChange('en'); }}
+              >
+                English
+              </a>
+              <a 
+                href="#" 
+                className={`mobile-lang-option ${language === 'es' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLanguageChange('es'); }}
+              >
+                Español
+              </a>
+              <a 
+                href="#" 
+                className={`mobile-lang-option ${language === 'pt' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); handleLanguageChange('pt'); }}
+              >
+                Português
+              </a>
             </div>
-          </section>
-
-          <section className="section" id="evidencia" aria-labelledby="ttl-evidencia">
-            <div className="wrap">
-              <div className="evidence-thirds-grid animated-section">
-                <div className="evidence-text-block">
-                    <div className="mouse-parallax" data-speed-mouse="0.03">
-                        <div className="anim-item-1">
-                            <h2 id="ttl-evidencia" className="interactive-text">{t.evidencia_title}</h2>
-                        </div>
-                        <div className="anim-item-2">
-                            <p className="muted interactive-text">{t.evidencia_p}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="card-wrapper card-conexa anim-item-4">
-                    <div className="case-card-inner">
-                        <div className="case-icon">
-                          <img src={imageUrls.conexaLogo} alt="Logo de CONEXA"/>
-                        </div>
-                        <div className="case-content">
-                            <h3>{t.conexa_title}</h3>
-                            <p className="muted">{t.conexa_p}</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="evidence-separator anim-item-3">
-                </div>
-                
-                <div className="card-wrapper card-ceic anim-item-5">
-                    <div className="case-card-inner">
-                        <div className="case-icon">
-                           <img src={imageUrls.ceicIcon} alt="Ícono de Proyectos CEIC"/>
-                        </div>
-                        <div className="case-content">
-                            <h3>{t.ceic_title}</h3>
-                            <p className="muted">{t.ceic_p}</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="card-wrapper card-cardiozono anim-item-6">
-                    <div className="case-card-inner">
-                        <div className="case-icon">
-                          <img src={imageUrls.cardiozonoLogo} alt="Logo de Clínica Cardiozono"/>
-                        </div>
-                        <div className="case-content">
-                            <h3>{t.cardiozono_title}</h3>
-                            <p className="muted">{t.cardiozono_p}</p>
-                        </div>
-                    </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
 
-        <section className="dark section" id="el-arquitecto" aria-labelledby="ttl-arquitecto">
-          <div className="wrap architect">
-            <div className="arch-grid animated-section">
-              <div className="image-box anim-item-2">
-                <img src={imageUrls.elvis} alt="Retrato de Elvis Pozo, estratega y Arquitecto de Legado." />
+        {/* Hero Section */}
+        <section id="inicio" className="hero section">
+          <div className="wrap">
+            <div className="copy">
+              <div ref={kickerRef} className="kicker">{t.hero_kicker}</div>
+              
+              <div className="hero-headline">
+                <div className="headline-left">
+                  <div ref={title1Ref} className="hero-title-wrapper">
+                    <h1>
+                      {t.hero_title1_lines.map((line, index) => (
+                        <span key={index} className="hero-line" dangerouslySetInnerHTML={{ __html: line }} />
+                      ))}
+                    </h1>
+                  </div>
+                </div>
+                
+                <div ref={vSeparatorRef} className="v-separator"></div>
+                
+                <div className="headline-right-wrapper">
+                  <div ref={title2Ref} className="hero-title-wrapper">
+                    <h1>
+                      {t.hero_title2_lines.map((line, index) => (
+                        <span key={index} className="hero-line" dangerouslySetInnerHTML={{ __html: line }} />
+                      ))}
+                    </h1>
+                  </div>
+                </div>
               </div>
-              <div className="copy">
-                <div className="mouse-parallax anim-item-1" data-speed-mouse="0.03">
-                  <h2 id="ttl-arquitecto" className="interactive-text">{t.arquitecto_title}</h2>
+              
+              <div ref={leadRef} className="lead">
+                <p>{t.hero_subtitle}</p>
+              </div>
+              
+              <div ref={ctaRef} className="cta-wrapper">
+                <button 
+                  className="cta" 
+                  onClick={() => scrollToSection('metodologia')}
+                >
+                  {t.hero_cta}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Methodology Section */}
+        <section id="metodologia" className="section light animated-section">
+          <div className="wrap">
+            <div className="protocol-grid">
+              <div className="copy anim-item-1">
+                <h2>{t.metodologia_title}</h2>
+                <p>{t.metodologia_p}</p>
+                
+                <div className="phase-cards anim-item-3">
+                  <div className="phase-card">
+                    <h3>{t.fase1_title}</h3>
+                    <p>{t.fase1_p}</p>
+                  </div>
+                  <div className="phase-card">
+                    <h3>{t.fase2_title}</h3>
+                    <p>{t.fase2_p}</p>
+                  </div>
+                  <div className="phase-card">
+                    <h3>{t.fase3_title}</h3>
+                    <p>{t.fase3_p}</p>
+                  </div>
                 </div>
-                <div className="mouse-parallax anim-item-3" data-speed-mouse="0.03">
-                  <p className="interactive-text">{t.arquitecto_p}</p>
+              </div>
+              
+              <div className="image-box anim-item-2 book-cover-container">
+                <img src={imageUrls.portadaLibro} alt="Portada del libro" />
+                <div className="book-cover-text">
+                  {t.metodologia_book_title}
                 </div>
-                <div style={{marginTop: '3rem'}}>
-                    <div className="mouse-parallax anim-item-4" data-speed-mouse="0.03">
-                      <h2 className="interactive-text" style={{fontSize: 'clamp(1.5rem, 2.2vw, 2.2rem)'}}>{t.arquitecto_subtitle}</h2>
-                    </div>
-                    <div className="mouse-parallax anim-item-5" data-speed-mouse="0.03">
-                      <p className="interactive-text">{t.arquitecto_subtext}</p>
-                    </div>
-                    <div className="anim-item-6">
-                        <BotonPremiumLegado onClick={() => setIsPopupVisible(true)}>{t.arquitecto_cta}</BotonPremiumLegado>
-                    </div>
+                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)' }}>
+                  <button className="cta">{t.metodologia_cta}</button>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <footer className="light section" aria-label="Footer" style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
-          <div className="wrap footer-wrap">
-            <p className="muted" style={{margin:0}}>
-               {t.footer_copyright_part1}
-               <a href="https://www.eurekagc.com" target="_blank" rel="noopener noreferrer">
+        {/* Evidence Section */}
+        <section id="evidencia" className="section light animated-section">
+          <div className="wrap">
+            <div className="evidence-thirds-grid">
+              <div className="evidence-text-block anim-item-1">
+                <h2>{t.evidencia_title}</h2>
+                <p className="muted">{t.evidencia_p}</p>
+              </div>
+              
+              <div className="evidence-separator anim-item-2"></div>
+              
+              <div className="evidence-card evidence-card-conexa anim-item-3">
+                <img src={imageUrls.conexaLogo} alt="CONEXA Logo" className="evidence-card-logo" />
+                <h3>{t.conexa_title}</h3>
+                <p>{t.conexa_p}</p>
+              </div>
+              
+              <div className="evidence-card evidence-card-ceic anim-item-4">
+                <img src={imageUrls.ceicIcon} alt="CEIC Icon" className="evidence-card-logo" />
+                <h3>{t.ceic_title}</h3>
+                <p>{t.ceic_p}</p>
+              </div>
+              
+              <div className="evidence-card evidence-card-cardiozono anim-item-5">
+                <img src={imageUrls.cardiozonoLogo} alt="Cardiozono Logo" className="evidence-card-logo" />
+                <h3>{t.cardiozono_title}</h3>
+                <p>{t.cardiozono_p}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Architect Section */}
+        <section id="el-arquitecto" className="section dark animated-section">
+          <div className="wrap">
+            <div className="arch-grid">
+              <div className="image-box anim-item-1">
+                <img src={imageUrls.elvis} alt="Elvis Pozo" />
+              </div>
+              
+              <div className="copy anim-item-2">
+                <h2>{t.arquitecto_title}</h2>
+                <p>{t.arquitecto_p}</p>
+                
+                <div className="cta-block anim-item-3">
+                  <h2>{t.arquitecto_subtitle}</h2>
+                  <p className="muted">{t.arquitecto_subtext}</p>
+                  <button 
+                    className="cta cta-legado" 
+                    onClick={() => setIsPopupVisible(true)}
+                  >
+                    {t.arquitecto_cta}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="section dark" style={{ paddingTop: '4vh', paddingBottom: '4vh' }}>
+          <div className="wrap" style={{ textAlign: 'center', paddingTop: '2rem', paddingBottom: '2rem' }}>
+            <p className="muted" style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+              {t.footer_copyright_part1}
+              <a href="https://eurekagc.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bronze-300)' }}>
                 {t.footer_copyright_part2}
-               </a>
+              </a>
             </p>
-            <LinkedInIcon />
-            <a href="#inicio" className="muted" style={{textDecoration:'none'}}>{t.footer_backtotop}</a>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem' }}>
+              <LinkedInIcon />
+              <a 
+                href="#inicio" 
+                onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}
+                style={{ color: 'var(--bronze-300)', textDecoration: 'none', fontSize: '0.9rem' }}
+              >
+                {t.footer_backtotop}
+              </a>
+            </div>
           </div>
         </footer>
 
-        <ContactPopup isVisible={isPopupVisible} onClose={() => setIsPopupVisible(false)} />
+        {/* Popups */}
+        <ContactPopup 
+          isVisible={isPopupVisible} 
+          onClose={() => setIsPopupVisible(false)} 
+        />
+        
         <LanguagePopup 
           isVisible={isLangPopupVisible} 
           onClose={() => setIsLangPopupVisible(false)} 
-          onSelect={(lang) => { setLanguage(lang); setIsLangPopupVisible(false); }}
+          onSelect={handleLanguageChange}
         />
-
-        <div className="cursor" aria-hidden="true"></div>
       </div>
     </>
   );
 }
+
