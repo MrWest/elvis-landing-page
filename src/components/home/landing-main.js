@@ -74,6 +74,8 @@ const translations = {
     form_message_placeholder: "Describa su desafío u oportunidad...",
     form_cta: "Enviar Mensaje",
     lang_popup_title: "Seleccionar idioma",
+    donwload_dossie_file:
+      "/files/dosier-estrategico-el-protocolo-de-arquitectura-de-legado.pdf",
   },
   en: {
     nav_inicio: "Home",
@@ -146,6 +148,8 @@ const translations = {
     form_message_placeholder: "Describe your challenge or opportunity...",
     form_cta: "Send Message",
     lang_popup_title: "Select language",
+    donwload_dossie_file:
+      "/files/strategic-dossier-the-legacy-architecture Protocol.pdf",
   },
   pt: {
     nav_inicio: "Início",
@@ -218,6 +222,8 @@ const translations = {
     form_message_placeholder: "Describa seu desafio ou oportunidade...",
     form_cta: "Enviar Mensagem",
     lang_popup_title: "Selecionar idioma",
+    donwload_dossie_file:
+      "/files/dossie-estrategico-o-protocolo-de-arquitetura-de-legado.pdf",
   },
 };
 
@@ -641,11 +647,34 @@ export default function LandingMain() {
   );
   BotonPremiumLegado.displayName = "BotonPremiumLegado";
 
-  const BotonLegado = ({ href, children }) => (
-    <a href={href} className="cta cta-legado">
-      {children}
-    </a>
-  );
+  const BotonLegado = ({ href, children }) => {
+    const handleDownload = async () => {
+      const filePath = t.donwload_dossie_file;
+
+      try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error("File not found");
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = t.donwload_dossie_file.replace('/files/', '');
+        link.click();
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error("Download failed:", error);
+        alert("Sorry, the PDF for this language is not available.");
+      }
+    };
+
+    return (
+      <div role="button" onClick={handleDownload} className="cta cta-legado">
+        {children}
+      </div>
+    );
+  };
 
   const LinkedInIcon = () => (
     <a
