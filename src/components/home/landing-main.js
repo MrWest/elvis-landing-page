@@ -29,7 +29,8 @@ const translations = {
     metodologia_p:
       "La confianza se construye sobre la claridad. Nuestra metodología es un proceso transparente y colaborativo, diseñado para que líderes de organizaciones, iniciativas de desarrollo y ventures tecnológicas transformen la incertidumbre en una hoja de ruta estratégica. Cada fase está orientada a construir una capacidad distintiva y un impacto sostenible en el tiempo.",
     metodologia_cta: "Descargar Dosier",
-    metodologia_book_title: "Dosier Estratégico: <br /> El Protocolo de Arquitectura de Legado",
+    metodologia_book_title:
+      "Dosier Estratégico: <br /> El Protocolo de Arquitectura de Legado",
     fase1_title: "Fase 1 — Arquitectura de Impacto",
     fase1_p:
       "Un análisis profundo para definir el 'norte estratégico' y construir un blueprint claro y de bajo riesgo para su iniciativa.",
@@ -100,7 +101,8 @@ const translations = {
     metodologia_p:
       "Trust is built on clarity. Our methodology is a transparent and collaborative process, designed for leaders of organizations, development initiatives, and tech ventures to transform uncertainty into a strategic roadmap. Each phase is geared towards building a distinctive capability and a sustainable, long-term impact.",
     metodologia_cta: "Download Dossier",
-    metodologia_book_title: "Strategic Dossier: <br />  The Legacy Architecture Protocol",
+    metodologia_book_title:
+      "Strategic Dossier: <br />  The Legacy Architecture Protocol",
     fase1_title: "Phase 1 — Impact Architecture",
     fase1_p:
       "A deep analysis to define the 'strategic north' and build a clear, low-risk blueprint for your initiative.",
@@ -171,7 +173,8 @@ const translations = {
     metodologia_p:
       "A confiança constrói-se sobre a clareza. A nossa metodologia é um processo transparente e colaborativo, concebido para que líderes de organizações, iniciativas de desenvolvimento e ventures tecnológicas transformem a incerteza num roteiro estratégico. Cada fase está orientada para construir uma capacidade distinta e um impacto sustentável ao longo do tempo.",
     metodologia_cta: "Descarregar Dossiê",
-    metodologia_book_title: "Dossiê Estratégico. <br /> O Protocolo de Arquitetura de Legado",
+    metodologia_book_title:
+      "Dossiê Estratégico. <br /> O Protocolo de Arquitetura de Legado",
     fase1_title: "Fase 1 — Arquitetura de Impacto",
     fase1_p:
       "Uma análise profunda para definir o 'norte estratégico' e construir um blueprint claro e de baixo risco para a sua iniciativa.",
@@ -712,7 +715,7 @@ export default function LandingMain() {
           <h2>{t.popup_title}</h2>
           <p className="muted">{t.popup_subtitle}</p>
           <form
-            action="https://formspree.io/f/your_form_id" // Placeholder
+            action="https://formspree.io/f/xkgvedwq"
             method="POST"
             className="contact-form"
           >
@@ -996,10 +999,18 @@ export default function LandingMain() {
               <a href="#el-arquitecto">Elvis Pozo</a>
             </div>
             <nav>
-              <a className="nav-link" href="#inicio">{t.nav_inicio}</a>
-              <a className="nav-link" href="#metodologia">{t.nav_metodologia}</a>
-              <a className="nav-link" href="#evidencia">{t.nav_evidencia}</a>
-              <a className="nav-link" href="#el-arquitecto">{t.nav_arquitecto}</a>
+              <a className="nav-link" href="#inicio">
+                {t.nav_inicio}
+              </a>
+              <a className="nav-link" href="#metodologia">
+                {t.nav_metodologia}
+              </a>
+              <a className="nav-link" href="#evidencia">
+                {t.nav_evidencia}
+              </a>
+              <a className="nav-link" href="#el-arquitecto">
+                {t.nav_arquitecto}
+              </a>
               <button
                 onClick={() => setIsPopupVisible(true)}
                 className="nav-button"
@@ -1117,12 +1128,13 @@ export default function LandingMain() {
                       src={imageUrls.portadaLibro}
                       alt={t.metodologia_book_title}
                     />
-                    <div>
-                      
-                    </div>
-                    <h3 className="book-title" dangerouslySetInnerHTML={{ __html: t.metodologia_book_title }}>
-                      
-                    </h3>
+                    <div></div>
+                    <h3
+                      className="book-title"
+                      dangerouslySetInnerHTML={{
+                        __html: t.metodologia_book_title,
+                      }}
+                    ></h3>
                   </div>
                   <BotonLegado href="#">{t.metodologia_cta}</BotonLegado>
                 </div>
