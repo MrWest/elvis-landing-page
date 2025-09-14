@@ -843,7 +843,7 @@ export default function LandingMain() {
         p{line-height:1.65;font-size:clamp(1rem,1.1vw,1.125rem); margin: 0 0 1.5rem 0;} 
         p:last-child {margin-bottom: 0;} .muted{color:#5a5957}
         .section{position:relative} 
-        .wrap{max-width:var(--maxw);margin:0 auto;padding-left: clamp(2rem, 5vw, 4rem); padding-right: clamp(2rem, 5vw, 4rem); padding-top: 8vh; padding-bottom: 8vh;}
+        .wrap{max-width:var(--maxw);margin:0 auto;padding-left: 0px; padding-right: 0px; padding-top: 8vh; padding-bottom: 8vh;}
         #metodologia .wrap, #evidencia .wrap, #el-arquitecto .wrap { padding-top: 14vh; padding-bottom: 14vh; }
         .site-header {position: fixed; top:0; left:0; right:0; background: rgba(15,15,15,0.72); backdrop-filter: blur(8px); z-index: 9999; border-bottom: 1px solid rgba(255,255,255,.06); transform: translateY(0);} .nav-wrap {max-width: var(--maxw); margin: 0 auto; padding: .8rem clamp(2rem, 5vw, 4rem); display: flex; justify-content: space-between; align-items: center;} .logo a {font-family: Lora, Georgia, serif; font-size: 1.25rem; font-weight: 300; color: #f4f1ec; letter-spacing:.01em; text-decoration: none; transition: color .25s var(--bezier);} .logo a:hover { color: var(--bronze-300); } 
         nav { display: flex; align-items: center; font-family: Inter, system-ui, sans-serif; }
@@ -851,7 +851,7 @@ export default function LandingMain() {
         
         .hero{min-height:92vh;background: radial-gradient(120% 90% at 70% 40%, #171717 0%, #0f0f0f 60%, #0a0a0a 100%); color:#f6f5f3; overflow:hidden; padding-top:82px; border-bottom:1px solid rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center;} 
         .hero .wrap{display:grid;grid-template-columns:1fr;text-align:center;gap:clamp(0.6rem, 1.5vw, 1.8rem);align-items:center;} 
-        .hero .copy { max-width: 1200px; margin: 0 auto; }
+        .hero .copy { max-width: 100%; margin: 0 auto; }
         .kicker{font-family: Inter, system-ui, sans-serif; letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;color:#D2C7BC} 
 
         :root { --hero-line-height: 1.18; }
