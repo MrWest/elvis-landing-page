@@ -866,7 +866,7 @@ export default function LandingMain() {
         body{margin:0;padding:0;background:var(--carbon);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;} 
         *,*:before,*:after{box-sizing:border-box} 
         h1,h2,h3{font-family:Lora,Georgia,serif;line-height:1.1;letter-spacing:-.02em; margin: 0 0 1rem 0; padding-bottom: 0.1em;} 
-        h1{font-size:clamp(2.2rem,4vw,4.2rem);} 
+        h1{font-size:clamp(2.0rem,4vw,4.2rem);} 
         h2{font-size:clamp(1.9rem,2.8vw,2.8rem)} 
         h3{font-size:clamp(1.15rem,1.6vw,1.35rem); margin-bottom: 0.75rem;} 
         p{line-height:1.65;font-size:clamp(1rem,1.1vw,1.125rem); margin: 0 0 1.5rem 0;} 
