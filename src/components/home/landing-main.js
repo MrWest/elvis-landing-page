@@ -28,7 +28,8 @@ const translations = {
     metodologia_title: "Nuestra Metodología: La Arquitectura de Legado",
     metodologia_p:
       "La confianza se construye sobre la claridad. Nuestra metodología es un proceso transparente y colaborativo, diseñado para que líderes de organizaciones, iniciativas de desarrollo y ventures tecnológicas transformen la incertidumbre en una hoja de ruta estratégica. Cada fase está orientada a construir una capacidad distintiva y un impacto sostenible en el tiempo.",
-    metodologia_cta: "Descargar Brief",
+    metodologia_cta: "Descargar Dosier",
+    metodologia_book_title: "Dosier Estratégico: <br /> El Protocolo de Arquitectura de Legado",
     fase1_title: "Fase 1 — Arquitectura de Impacto",
     fase1_p:
       "Un análisis profundo para definir el 'norte estratégico' y construir un blueprint claro y de bajo riesgo para su iniciativa.",
@@ -98,7 +99,8 @@ const translations = {
     metodologia_title: "Our Methodology: The Legacy Architecture",
     metodologia_p:
       "Trust is built on clarity. Our methodology is a transparent and collaborative process, designed for leaders of organizations, development initiatives, and tech ventures to transform uncertainty into a strategic roadmap. Each phase is geared towards building a distinctive capability and a sustainable, long-term impact.",
-    metodologia_cta: "Download Brief",
+    metodologia_cta: "Download Dossier",
+    metodologia_book_title: "Strategic Dossier: <br />  The Legacy Architecture Protocol",
     fase1_title: "Phase 1 — Impact Architecture",
     fase1_p:
       "A deep analysis to define the 'strategic north' and build a clear, low-risk blueprint for your initiative.",
@@ -168,7 +170,8 @@ const translations = {
     metodologia_title: "A Nossa Metodologia: A Arquitetura de Legado",
     metodologia_p:
       "A confiança constrói-se sobre a clareza. A nossa metodologia é um processo transparente e colaborativo, concebido para que líderes de organizações, iniciativas de desenvolvimento e ventures tecnológicas transformem a incerteza num roteiro estratégico. Cada fase está orientada para construir uma capacidade distinta e um impacto sustentável ao longo do tempo.",
-    metodologia_cta: "Descarregar Brief",
+    metodologia_cta: "Descarregar Dossiê",
+    metodologia_book_title: "Dossiê Estratégico. <br /> O Protocolo de Arquitetura de Legado",
     fase1_title: "Fase 1 — Arquitetura de Impacto",
     fase1_p:
       "Uma análise profunda para definir o 'norte estratégico' e construir um blueprint claro e de baixo risco para a sua iniciativa.",
@@ -900,7 +903,7 @@ export default function LandingMain() {
         .evidence-thirds-grid.animate .anim-item-1 { opacity: 1; transform: translateY(0); transition-delay: 0.1s; } .evidence-thirds-grid.animate .anim-item-2 { opacity: 1; transform: translateY(0); transition-delay: 0.25s; } .evidence-thirds-grid.animate .anim-item-3 { opacity: 1; transform: translateY(0); transition-delay: 0.6s; } .evidence-thirds-grid.animate .anim-item-4 { opacity: 1; transform: translateY(0); transition-delay: 0.75s; } .evidence-thirds-grid.animate .anim-item-5 { opacity: 1; transform: translateY(0); transition-delay: 0.9s; } .evidence-thirds-grid.animate .anim-item-6 { opacity: 1; transform: translateY(0); transition-delay: 1.05s; }
         .arch-grid.animate .anim-item-1 { opacity: 1; transform: translateY(0); transition-delay: 0.1s; } .arch-grid.animate .anim-item-2 { opacity: 1; transform: translateY(0); transition-delay: 0.25s; } .arch-grid.animate .anim-item-3 { opacity: 1; transform: translateY(0); transition-delay: 0.6s; } .arch-grid.animate .anim-item-4 { opacity: 1; transform: translateY(0); transition-delay: 0.75s; } .arch-grid.animate .anim-item-5 { opacity: 1; transform: translateY(0); transition-delay: 0.9s; } .arch-grid.animate .anim-item-6 { opacity: 1; transform: translateY(0); transition-delay: 1.05s; }
 
-        .protocol-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.2vw,2rem); align-items: stretch;}
+        .protocol-grid{display:grid;grid-template-columns:0.5fr 1fr;gap:clamp(1rem,2.2vw,2rem); align-items: stretch;}
         .phase-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem; height: 100%; margin-top: 3rem;}
         .arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}
         #el-arquitecto .image-box { min-height: 75vh; }
@@ -923,16 +926,17 @@ export default function LandingMain() {
         .card-wrapper { position: relative; border-radius: 1.25rem; padding: 2px; background: transparent; height: 100%; box-shadow: none; transition: transform .35s var(--bezier), box-shadow .35s var(--bezier), background .35s var(--bezier); }
         .card-wrapper:hover { background: linear-gradient(160deg, var(--bronze-300), var(--bronze-700)); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(30,25,20,.18); }
         .card-inner { background-color: white; height: 100%; border-radius: calc(1.25rem - 2px); padding: 6rem 1.5rem; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .card-inner > h3 { color: var(--bronze-700); }
         .card-dot { position: absolute; bottom: 1.5rem; right: 1.5rem; width: 24px; height: 24px; background-color: var(--carbon); border-radius: 50%; }
         .case-card-inner { background-color: white; height: 100%; border-radius: calc(1.25rem - 2px); padding: 2rem 3rem; display: flex; flex-direction: column; justify-content: center; }
         .case-icon { flex-shrink: 0; margin-bottom: 1rem; height: 64px; width: 64px; } .case-icon img { height: 100%; width: 100%; object-fit: contain; }
         .card-conexa { grid-column: 2 / 4; grid-row: 1 / 2; } .card-conexa .case-card-inner { background-color: var(--evidence-card-conexa-bg); } .card-conexa h3, .card-conexa p { color: var(--evidence-text-light) !important; }
         .card-ceic { grid-column: 3 / 4; grid-row: 2 / 4; } .card-ceic .case-card-inner { background-color: var(--evidence-card-ceic-bg); } .card-ceic h3 { color: var(--evidence-text-dark); } .card-ceic p { color: var(--evidence-text-dark) !important; } .card-ceic .case-content { text-align: left; }
         .card-cardiozono { grid-column: 1 / 3; grid-row: 3 / 4; text-align: right; } .card-cardiozono .case-card-inner { background-color: var(--evidence-card-cardiozono-bg); } .card-cardiozono .case-icon { margin-left: auto; }
-        .book-image-box { background: var(--carbon-900); padding: 4rem 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem; }
+        .book-image-box { background: var(--carbon-900); padding: 4rem 1rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem; }
         .book-cover { position: relative; text-align: center; width: 100%; max-width: 280px; aspect-ratio: 2 / 3; margin: 0 auto; border-radius: 8px; overflow: hidden; background-color: #000; }
         .book-cover img { mix-blend-mode: normal; opacity: 1; object-fit: contain; display: block; }
-        .book-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; color: transparent; font-size: clamp(1.2rem, 2vw, 1.7rem); background: linear-gradient(170deg, #D4AF8B, var(--bronze-700)); -webkit-background-clip: text; background-clip: text; text-shadow: 0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.1); padding: 0.5rem 1rem; margin: 0; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+        .book-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; color: transparent; font-size: clamp(0.8rem, 3vw, 1.4rem); background: linear-gradient(170deg, #D4AF8B, var(--bronze-700)); -webkit-background-clip: text; background-clip: text; text-shadow: 0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.1); padding: 0.5rem 1rem; margin: 0; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
         .footer-wrap { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding-top: 0; padding-bottom: 0; }
         .social-icon { color: var(--muted); transition: color .35s var(--bezier), transform .35s var(--bezier); display: inline-block; } .social-icon:hover { color: var(--bronze-300); transform: translateY(-2px); }
         .footer-wrap p a { color: var(--muted); text-decoration: underline; transition: color .25s var(--bezier); } .footer-wrap p a:hover { color: var(--bronze-300); text-decoration: none; }
@@ -1110,10 +1114,13 @@ export default function LandingMain() {
                   <div className="book-cover">
                     <img
                       src={imageUrls.portadaLibro}
-                      alt={t.metodologia_cta.replace("Descargar ", "")}
+                      alt={t.metodologia_book_title}
                     />
-                    <h3 className="book-title">
-                      <span>{t.metodologia_cta.replace("Descargar ", "")}</span>
+                    <div>
+                      
+                    </div>
+                    <h3 className="book-title" dangerouslySetInnerHTML={{ __html: t.metodologia_book_title }}>
+                      
                     </h3>
                   </div>
                   <BotonLegado href="#">{t.metodologia_cta}</BotonLegado>
