@@ -970,6 +970,7 @@ export default function LandingMain() {
           .evidence-text-block, .evidence-separator, .card-wrapper { grid-column: auto; grid-row: auto; text-align: left !important; }
           .case-card-inner { padding: 2rem !important; flex-direction: column !important; align-items: flex-start !important; }
           .case-icon { margin: 0 0 1rem 0 !important; }
+          .nav-link { display: none; }
           /* On small screens allow the fixed lines to wrap if necessary */
           .hero-line { white-space: normal; }
         }
@@ -995,10 +996,10 @@ export default function LandingMain() {
               <a href="#el-arquitecto">Elvis Pozo</a>
             </div>
             <nav>
-              <a href="#inicio">{t.nav_inicio}</a>
-              <a href="#metodologia">{t.nav_metodologia}</a>
-              <a href="#evidencia">{t.nav_evidencia}</a>
-              <a href="#el-arquitecto">{t.nav_arquitecto}</a>
+              <a className="nav-link" href="#inicio">{t.nav_inicio}</a>
+              <a className="nav-link" href="#metodologia">{t.nav_metodologia}</a>
+              <a className="nav-link" href="#evidencia">{t.nav_evidencia}</a>
+              <a className="nav-link" href="#el-arquitecto">{t.nav_arquitecto}</a>
               <button
                 onClick={() => setIsPopupVisible(true)}
                 className="nav-button"
