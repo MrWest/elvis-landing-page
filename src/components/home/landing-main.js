@@ -794,7 +794,7 @@ export default function LandingMain() {
               />
             </svg>
           </button>
-          <h2 className="lang-popup-title">{t.lang_popup_title}</h2>
+          {/* <h2 className="lang-popup-title">{t.lang_popup_title}</h2> */}
           <div className="lang-options">
             <button
               className={language === "en" ? "selected-lang" : ""}
@@ -903,6 +903,7 @@ export default function LandingMain() {
         
         .animated-section .anim-item-1, .animated-section .anim-item-2, .animated-section .anim-item-3, .animated-section .anim-item-4, .animated-section .anim-item-5, .animated-section .anim-item-6, .animated-section .anim-item-7 { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--bezier), transform 0.8s var(--bezier); }
         .protocol-grid.animate .anim-item-1 { opacity: 1; transform: translateY(0); transition-delay: 0.1s; } .protocol-grid.animate .anim-item-2 { opacity: 1; transform: translateY(0); transition-delay: 0.25s; } .protocol-grid.animate .anim-item-3 { opacity: 1; transform: translateY(0); transition-delay: 0.6s; } .protocol-grid.animate .anim-item-4 { opacity: 1; transform: translateY(0); transition-delay: 0.75s; } .protocol-grid.animate .anim-item-5 { opacity: 1; transform: translateY(0); transition-delay: 0.9s; } .protocol-grid.animate .anim-item-6 { opacity: 1; transform: translateY(0); transition-delay: 1.05s; }
+        .flex.animate .anim-item-1 { opacity: 1; transform: translateY(0); transition-delay: 0.1s; } .flex.animate .anim-item-2 { opacity: 1; transform: translateY(0); transition-delay: 0.25s; } .flex.animate .anim-item-3 { opacity: 1; transform: translateY(0); transition-delay: 0.6s; } .flex.animate .anim-item-4 { opacity: 1; transform: translateY(0); transition-delay: 0.75s; } .flex.animate .anim-item-5 { opacity: 1; transform: translateY(0); transition-delay: 0.9s; } .flex.animate .anim-item-6 { opacity: 1; transform: translateY(0); transition-delay: 1.05s; }
         .evidence-thirds-grid.animate .anim-item-1 { opacity: 1; transform: translateY(0); transition-delay: 0.1s; } .evidence-thirds-grid.animate .anim-item-2 { opacity: 1; transform: translateY(0); transition-delay: 0.25s; } .evidence-thirds-grid.animate .anim-item-3 { opacity: 1; transform: translateY(0); transition-delay: 0.6s; } .evidence-thirds-grid.animate .anim-item-4 { opacity: 1; transform: translateY(0); transition-delay: 0.75s; } .evidence-thirds-grid.animate .anim-item-5 { opacity: 1; transform: translateY(0); transition-delay: 0.9s; } .evidence-thirds-grid.animate .anim-item-6 { opacity: 1; transform: translateY(0); transition-delay: 1.05s; }
         .arch-grid.animate .anim-item-1 { opacity: 1; transform: translateY(0); transition-delay: 0.1s; } .arch-grid.animate .anim-item-2 { opacity: 1; transform: translateY(0); transition-delay: 0.25s; } .arch-grid.animate .anim-item-3 { opacity: 1; transform: translateY(0); transition-delay: 0.6s; } .arch-grid.animate .anim-item-4 { opacity: 1; transform: translateY(0); transition-delay: 0.75s; } .arch-grid.animate .anim-item-5 { opacity: 1; transform: translateY(0); transition-delay: 0.9s; } .arch-grid.animate .anim-item-6 { opacity: 1; transform: translateY(0); transition-delay: 1.05s; }
 
@@ -937,7 +938,7 @@ export default function LandingMain() {
         .card-ceic { grid-column: 3 / 4; grid-row: 2 / 4; } .card-ceic .case-card-inner { background-color: var(--evidence-card-ceic-bg); } .card-ceic h3 { color: var(--evidence-text-dark); } .card-ceic p { color: var(--evidence-text-dark) !important; } .card-ceic .case-content { text-align: left; }
         .card-cardiozono { grid-column: 1 / 3; grid-row: 3 / 4; text-align: right; } .card-cardiozono .case-card-inner { background-color: var(--evidence-card-cardiozono-bg); } .card-cardiozono .case-icon { margin-left: auto; }
         .book-image-box { background: var(--carbon-900); padding: 4rem 1rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem; }
-        .book-cover { position: relative; text-align: center; width: 100%; max-width: 280px; aspect-ratio: 2 / 3; margin: 0 auto; border-radius: 8px; overflow: hidden; background-color: #000; }
+        .book-cover { position: relative; text-align: center; width: 100%; max-width: 280px; aspect-ratio: 2 / 3; margin: 0 auto; border-radius: 8px; overflow: hidden; background-color: transparent; }
         .book-cover img { mix-blend-mode: normal; opacity: 1; object-fit: contain; display: block; }
         .book-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; color: transparent; font-size: clamp(0.8rem, 3vw, 1.4rem); background: linear-gradient(170deg, #D4AF8B, var(--bronze-700)); -webkit-background-clip: text; background-clip: text; text-shadow: 0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.1); padding: 0.5rem 1rem; margin: 0; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
         .footer-wrap { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding-top: 0; padding-bottom: 0; }
@@ -969,11 +970,14 @@ export default function LandingMain() {
           .v-separator { width: 100px; height: 1px; min-height: 0; align-self: center; }
           .hero-headline > div, .hero-headline > .headline-right-wrapper, .hero-headline > .headline-right-wrapper > .hero-title-wrapper > span { max-width: 100%; text-align: center; }
           .headline-left .hero-title-wrapper span { text-align: center; }
+          .headline-right-wrapper { width: 100%; }
+          .headline-left { width: 100%; }
           .evidence-thirds-grid { grid-template-columns: 1fr; grid-template-rows: auto; min-height: auto; }
           .evidence-text-block, .evidence-separator, .card-wrapper { grid-column: auto; grid-row: auto; text-align: left !important; }
           .case-card-inner { padding: 2rem !important; flex-direction: column !important; align-items: flex-start !important; }
           .case-icon { margin: 0 0 1rem 0 !important; }
           .nav-link { display: none; }
+          .section { padding-left: 12px; padding-right: 12px; }
           /* On small screens allow the fixed lines to wrap if necessary */
           .hero-line { white-space: normal; }
         }
@@ -1121,8 +1125,8 @@ export default function LandingMain() {
             aria-labelledby="ttl-metodologia"
           >
             <div className="wrap protocol">
-              <div className="protocol-grid animated-section">
-                <div className="image-box book-image-box anim-item-3">
+              <div className="flex flex-col-reverse md:flex-row animated-section space-x-6">
+                <div className="image-box book-image-box anim-item-3 w-full">
                   <div className="book-cover">
                     <img
                       src={imageUrls.portadaLibro}
@@ -1139,6 +1143,7 @@ export default function LandingMain() {
                   <BotonLegado href="#">{t.metodologia_cta}</BotonLegado>
                 </div>
                 <div
+                  className="flex-grow"
                   style={{
                     display: "flex",
                     flexDirection: "column",
