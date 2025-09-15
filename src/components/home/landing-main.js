@@ -73,7 +73,7 @@ const translations = {
     form_message_label: "Mensaje",
     form_message_placeholder: "Describa su desafío u oportunidad...",
     form_cta: "Enviar Mensaje",
-    lang_popup_title: "Seleccionar idioma",
+    lang_popup_title: "Idioma",
     donwload_dossie_file:
       "/files/dosier-estrategico-el-protocolo-de-arquitectura-de-legado.pdf",
   },
@@ -147,7 +147,7 @@ const translations = {
     form_message_label: "Message",
     form_message_placeholder: "Describe your challenge or opportunity...",
     form_cta: "Send Message",
-    lang_popup_title: "Select language",
+    lang_popup_title: "Language",
     donwload_dossie_file:
       "/files/strategic-dossier-the-legacy-architecture Protocol.pdf",
   },
@@ -221,7 +221,7 @@ const translations = {
     form_message_label: "Mensagem",
     form_message_placeholder: "Describa seu desafio ou oportunidade...",
     form_cta: "Enviar Mensagem",
-    lang_popup_title: "Selecionar idioma",
+    lang_popup_title: "Idioma",
     donwload_dossie_file:
       "/files/dossie-estrategico-o-protocolo-de-arquitetura-de-legado.pdf",
   },
@@ -265,11 +265,11 @@ export default function LandingMain() {
   const vSeparatorRef = useRef(); // Ref for the target line
 
   const imageUrls = {
-    elvis: "/images/elvis-pozo.png",
+    elvis: "/images/elvis-pozo.jpg",
     portadaLibro: "/images/portada_libro.png",
-    conexaLogo: "https://placehold.co/80x80/404040/FBF9F6?text=CONEXA",
-    ceicIcon: "https://placehold.co/80x80/999999/1A202C?text=CEIC",
-    cardiozonoLogo: "https://placehold.co/80x80/f5f5f5/1A202C?text=CZ",
+    conexaLogo: "/images/conexa-logo.png",
+    ceicIcon: "/images/ceic-icon.png",
+    cardiozonoLogo: "/images/cardiozono-logo.png",
   };
 
   // --- EFFECTS ---
@@ -823,7 +823,7 @@ export default function LandingMain() {
               />
             </svg>
           </button>
-          {/* <h2 className="lang-popup-title">{t.lang_popup_title}</h2> */}
+          <h2 className="lang-popup-title">{t.lang_popup_title}</h2>
           <div className="lang-options">
             <button
               className={language === "en" ? "selected-lang" : ""}
@@ -975,7 +975,7 @@ export default function LandingMain() {
         .footer-wrap p a { color: var(--muted); text-decoration: underline; transition: color .25s var(--bezier); } .footer-wrap p a:hover { color: var(--bronze-300); text-decoration: none; }
         .popup-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 15, 15, 0.72); backdrop-filter: blur(8px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; animation: fadeIn 0.3s forwards; }
         .popup-content { background: #1a1a1a; padding: 3.5rem; border-radius: 22px; border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 500px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transform: scale(0.95); animation: scaleIn 0.3s forwards; }
-        .lang-popup-title { font-size: 28px; }
+        .lang-popup-title { font-size: 28px; text-align: center; }
         .popup-content h2 { color: var(--offwhite); } .popup-content p { color: var(--muted); }
         .close-button { position: absolute; top: 0.8rem; right: 1rem; background: none; border: none; padding: 0.5rem; color: var(--muted); cursor: pointer; transition: color 0.25s; } .close-button:hover { color: var(--offwhite); } .close-button svg { width: 24px; height: 24px; }
         .contact-form { display: flex; flex-direction: column; gap: 1.25rem; } .contact-form .form-group { display: flex; flex-direction: column; }
