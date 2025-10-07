@@ -272,10 +272,10 @@ export default function LandingMain() {
   const vSeparatorRef = useRef(); // Ref for the target line
 
   const imageUrls = {
-    elvis: "/images/elvis-pozo.jpg",
+    elvis: "/images/elvis-pozo-hd.jpg",
     portadaLibro: "/images/portada_libro.png",
     conexaLogo: "/images/conexa-logo.png",
-    ceicIcon: "/images/ceic-icon.png",
+    ceicIcon: "/images/ceic-icon-new.png",
     cardiozonoLogo: "/images/cardiozono-logo.png",
   };
 
