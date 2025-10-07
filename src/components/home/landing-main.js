@@ -1097,7 +1097,7 @@ export default function LandingMain() {
         <header className="hero section" id="inicio">
           <div className="wrap">
             <div className="copy">
-              <div className="mouse-parallax" data-speed-mouse="0.03">
+              <div className="mouse-parallax" data-speed-mouse="0.08">
                 <h1>
                   <div className="hero-headline">
                     <div className="headline-left">
@@ -1193,7 +1193,7 @@ export default function LandingMain() {
                   }}
                 >
                   <div className="protocol-text-block">
-                    <div className="mouse-parallax" data-speed-mouse="0.03">
+                    <div className="mouse-parallax" data-speed-mouse="0.08">
                       <div className="anim-item-1">
                         <h2 id="ttl-metodologia" className="interactive-text">
                           {t.metodologia_title}
@@ -1252,7 +1252,7 @@ export default function LandingMain() {
             <div className="wrap">
               <div className="evidence-thirds-grid animated-section">
                 <div className="evidence-text-block">
-                  <div className="mouse-parallax" data-speed-mouse="0.03">
+                  <div className="mouse-parallax" data-speed-mouse="0.08">
                     <div className="anim-item-1">
                       <h2 id="ttl-evidencia" className="interactive-text">
                         {t.evidencia_title}
@@ -1328,7 +1328,7 @@ export default function LandingMain() {
               <div className="copy">
                 <div
                   className="mouse-parallax anim-item-1"
-                  data-speed-mouse="0.03"
+                  data-speed-mouse="0.08"
                 >
                   <h2 id="ttl-arquitecto" className="interactive-text">
                     {t.arquitecto_title}
@@ -1336,14 +1336,14 @@ export default function LandingMain() {
                 </div>
                 <div
                   className="mouse-parallax anim-item-3"
-                  data-speed-mouse="0.03"
+                  data-speed-mouse="0.08"
                 >
                   <p className="interactive-text">{t.arquitecto_p}</p>
                 </div>
                 <div style={{ marginTop: "3rem" }}>
                   <div
                     className="mouse-parallax anim-item-4"
-                    data-speed-mouse="0.03"
+                    data-speed-mouse="0.08"
                   >
                     <h2
                       className="interactive-text"
@@ -1354,7 +1354,7 @@ export default function LandingMain() {
                   </div>
                   <div
                     className="mouse-parallax anim-item-5"
-                    data-speed-mouse="0.03"
+                    data-speed-mouse="0.08"
                   >
                     <p className="interactive-text">{t.arquitecto_subtext}</p>
                   </div>
