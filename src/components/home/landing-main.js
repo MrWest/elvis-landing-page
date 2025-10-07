@@ -1,9 +1,12 @@
+import Head from "next/head";
 import React, { useEffect, useState, useRef } from "react";
 // It's recommended to use a package manager, but for this environment, we'll add GSAP via a script tag.
 
 // 1. Centralización de Textos (Traducciones) - ACTUALIZADO
 const translations = {
   es: {
+    page_title: "Elvis Pozo | Estratega de Sistemas | Arquitecto de Legado",
+    page_description: "Como Arquitecto de Legado, diseño ecosistemas estratégicos para líderes de naciones, ONGs y corporaciones que buscan construir un impacto global y sostenible.",
     nav_inicio: "Inicio",
     nav_metodologia: "Metodología",
     nav_evidencia: "Evidencia",
@@ -33,13 +36,13 @@ const translations = {
       "Dosier Estratégico: <br /> El Protocolo de Arquitectura de Legado",
     fase1_title: "Fase 1 — Arquitectura de Impacto",
     fase1_p:
-      "Un análisis profundo para definir el 'norte estratégico' y construir un blueprint claro y de bajo riesgo para su iniciativa.",
+      "Un análisis profundo para definir el <strong>norte estratégico</strong> y construir un blueprint claro y de bajo riesgo para su iniciativa.",
     fase2_title: "Fase 2 — Motor de Ejecución",
     fase2_p:
-      "La implementación de un sistema de gestión ágil que potencia a su equipo para obtener resultados tangibles y medibles.",
+      "La implementación de un <strong>sistema de gestión ágil que potencia a su equipo</strong> para obtener resultados tangibles y medibles.",
     fase3_title: "Fase 3 — Orquestación del Legado",
     fase3_p:
-      "La transformación de la nueva capacidad interna de su organización en un impacto sostenible y duradero.",
+      "La transformación de la nueva capacidad interna de su organización en un <strong>impacto sostenible y duradero</strong>.",
     evidencia_title: "Nuestra Filosofía en Acción",
     evidencia_p:
       "Cada proyecto es la materialización de nuestra filosofía. No se trata de una lista de logros, sino de la evidencia de un proceso de transformación. Los siguientes casos ilustran cómo la arquitectura de sistemas se aplica a diferentes tipos de desafíos complejos.",
@@ -78,6 +81,8 @@ const translations = {
       "/files/dosier-estrategico-el-protocolo-de-arquitectura-de-legado.pdf",
   },
   en: {
+    page_title: "Elvis Pozo | Systems Strategist | Legacy Architect",
+    page_description: "As a Legacy Architect, I design strategic ecosystems for leaders of nations, NGOs, and corporations seeking to build sustainable, global impact.",
     nav_inicio: "Home",
     nav_metodologia: "Methodology",
     nav_evidencia: "Evidence",
@@ -107,13 +112,13 @@ const translations = {
       "Strategic Dossier: <br />  The Legacy Architecture Protocol",
     fase1_title: "Phase 1 — Impact Architecture",
     fase1_p:
-      "A deep analysis to define the 'strategic north' and build a clear, low-risk blueprint for your initiative.",
+      "A deep analysis to define the <strong>strategic north</strong> and build a clear, low-risk blueprint for your initiative.",
     fase2_title: "Phase 2 — Execution Engine",
     fase2_p:
-      "The implementation of an agile management system that empowers your team to achieve tangible, measurable results.",
+      "The implementation of an agile <strong>management system that empowers your team</strong> to achieve tangible, measurable results.",
     fase3_title: "Phase 3 — Legacy Orchestration",
     fase3_p:
-      "The transformation of your organization's new internal capabilities into a sustainable and lasting impact.",
+      "The transformation of your organization's new internal capabilities into a <strong>sustainable and lasting impact</strong>.",
     evidencia_title: "Our Philosophy in Action",
     evidencia_p:
       "Each project is the materialization of our philosophy. This is not a list of accomplishments, but evidence of a transformation process. The following cases illustrate how systems architecture is applied to different types of complex challenges.",
@@ -152,6 +157,8 @@ const translations = {
       "/files/strategic-dossier-the-legacy-architecture Protocol.pdf",
   },
   pt: {
+    page_title: "Elvis Pozo | Estratega de Sistemas | Arquiteto de Legado",
+    page_description: "Como Arquiteto de Legado, desenho ecossistemas estratégicos para líderes de nações, ONGs e corporações que procuram construir um impacto global e sustentável.",
     nav_inicio: "Início",
     nav_metodologia: "Metodologia",
     nav_evidencia: "Evidência",
@@ -181,13 +188,13 @@ const translations = {
       "Dossiê Estratégico. <br /> O Protocolo de Arquitetura de Legado",
     fase1_title: "Fase 1 — Arquitetura de Impacto",
     fase1_p:
-      "Uma análise profunda para definir o 'norte estratégico' e construir um blueprint claro e de baixo risco para a sua iniciativa.",
+      "Uma análise profunda para definir o <strong>norte estratégico</strong> e construir um blueprint claro e de baixo risco para a sua iniciativa.",
     fase2_title: "Fase 2 — Motor de Execução",
     fase2_p:
-      "A implementação de um sistema de gestão ágil que potencia a sua equipa para obter resultados tangíveis e mensuráveis.",
+      "A implementação de um <strong>sistema de gestão ágil que potencia a sua equipa</strong> para obter resultados tangíveis e mensuráveis.",
     fase3_title: "Fase 3 — Orquestração do Legado",
     fase3_p:
-      "A transformação da nova capacidade interna da sua organização num impacto sustentável e duradouro.",
+      "A transformação da nova capacidade interna da sua organização num <strong>impacto sustentável e duradouro</strong>.",
     evidencia_title: "A Nossa Filosofia em Ação",
     evidencia_p:
       "Cada projeto é a materialização da nossa filosofia. Não se trata de uma lista de conquistas, mas da evidência de um processo de transformação. Os casos seguintes ilustram como a arquitetura de sistemas é aplicada a diferentes tipos de desafios complexos.",
@@ -866,7 +873,7 @@ export default function LandingMain() {
         body{margin:0;padding:0;background:var(--carbon);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;} 
         *,*:before,*:after{box-sizing:border-box} 
         h1,h2,h3{font-family:Lora,Georgia,serif;line-height:1.1;letter-spacing:-.02em; margin: 0 0 1rem 0; padding-bottom: 0.1em;} 
-        h1{font-size:clamp(2.0rem,4vw,4.2rem);} 
+        h1{font-size:clamp(2.0rem,4vw,4.1rem);} 
         h2{font-size:clamp(1.9rem,2.8vw,2.8rem)} 
         h3{font-size:clamp(1.15rem,1.6vw,1.35rem); margin-bottom: 0.75rem;} 
         p{line-height:1.65;font-size:clamp(1rem,1.1vw,1.125rem); margin: 0 0 1.5rem 0;} 
@@ -895,7 +902,7 @@ export default function LandingMain() {
           height: 1.2em;
           overflow: hidden;
         }
-
+        strong, em { font-weight: 600; font-style: normal; position: relative;  }
         .headline-right-wrapper em, .hero-line em {
             color: var(--bronze-300);
             font-style: normal;
@@ -1012,6 +1019,12 @@ export default function LandingMain() {
         }
         @media (prefers-reduced-motion: reduce){ .image-box{transition:none} .cursor{display:none} }
       `}</style>
+      <Head>
+        <title>{t.page_title}</title>
+        <meta name="description" content={t.page_description} />
+        <link rel="icon" href="/favicon.png" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
       {isLoading && (
         <Preloader ref={{ preloaderRef, circleRef, nameRef, nameMaskRef }} />
@@ -1197,14 +1210,14 @@ export default function LandingMain() {
                     <div className="card-wrapper anim-item-4">
                       <div className="card-inner">
                         <h3>{t.fase1_title}</h3>
-                        <p className="muted">{t.fase1_p}</p>
+                        <p className="muted" dangerouslySetInnerHTML={{ __html: t.fase1_p }} />
                         <div className="card-dot"></div>
                       </div>
                     </div>
                     <div className="card-wrapper anim-item-5">
                       <div className="card-inner">
                         <h3>{t.fase2_title}</h3>
-                        <p className="muted">{t.fase2_p}</p>
+                        <p className="muted" dangerouslySetInnerHTML={{ __html: t.fase2_p }} />
                         <div
                           className="card-dot"
                           style={{
@@ -1216,7 +1229,7 @@ export default function LandingMain() {
                     <div className="card-wrapper anim-item-6">
                       <div className="card-inner">
                         <h3>{t.fase3_title}</h3>
-                        <p className="muted">{t.fase3_p}</p>
+                        <p className="muted" dangerouslySetInnerHTML={{ __html: t.fase3_p }} />
                         <div
                           className="card-dot"
                           style={{
